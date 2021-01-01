@@ -1,23 +1,27 @@
 public class SideForward extends OffensivePlayer{
 
-	public SideForward(String name, int number, int age, int stamina, int finish, int dribble, int mental){
-		super(name,number,age,stamina,finish,dribble,mental);
+	public SideForward(String name, int number, int age, int stamina, int mental, int finish, int dribble) {
+		super(name, number, age, stamina, mental, finish, dribble);
 	}
 
+	@Override
 	public String getPos(){return "Side Forward";}
 
-	public void play(DefensivePlayer p){
-		
-	}
-
+	@Override
 	public boolean replacementChance(){
-		if(stamina < 50){
-			return mental < 90;
+		if(this.getStamina() < 50){
+			return this.getMental() < 90;
 		}
 		return true;
 	}
 
-	public void updateMental(TeamStatistics ts){
+	@Override
+	public void updateMental(Team t){
 
+	}
+	
+	@Override
+	public String toString(){
+		return "Side Forward: "+super.toString();
 	}
 }

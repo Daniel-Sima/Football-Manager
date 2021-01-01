@@ -1,26 +1,38 @@
 public class Fullback extends DefensivePlayer{
-	private int stamina;
 	private int tackles;
 
-	public Fullback(String name, int number, int age, int stamina, int tackles, int pass, int mental) {
-		super(name, number, age, pass, mental);
+	public Fullback(String name, int number, int age, int stamina, int mental, int pass, int tackles){
+		super(name, number, age, stamina, mental, pass);
 		this.tackles = tackles;
-		this.stamina = stamina;
 	}
+	
+	@Override
+	public String getPos(){return "Fullback";}
 
-	public String getPos(){return "Side midfielder";}
-
-	public void play(Player p){
-
-	}
-
+	@Override
 	public boolean replacementChance(){
-		if(stamina < 50){
-			return mental < 90;
+		if(this.getStamina() < 50){
+			return this.getMental() < 90;
 		}
 		return true;
 	}
-	public void updateMental(TeamStatistics ts){
 
+	@Override	
+	public void updateMental(Team t){
+
+	}
+	
+	@Override
+	public String toString(){
+		return "Fullback: "+super.toString()+"||Tackles :"+tackles;	
+	}
+
+	public int getTackles(){
+		return tackles;
+	}
+	
+	@Override
+	public int sumAtributes(){
+		return this.getStamina() + this.getMental() + this.getPass() + this.getTackles();
 	}
 }

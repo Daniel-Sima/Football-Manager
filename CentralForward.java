@@ -1,23 +1,28 @@
 public class CentralForward extends OffensivePlayer{
 
-	public CentralForward(String name, int number, int age, int stamina, int finish, int dribble, int mental){
-		super(name,number,age,stamina,finish,dribble,mental);
+	public CentralForward(String name, int number, int age, int stamina, int mental, int finish, int dribble){
+		super(name, number, age, stamina, mental, finish, dribble);;
 	}
 
-	public String getPos(){return "Central Forward";}
+	@Override
+	public String getPos(){ return "Central Forward";}
 
-	public void play(Player p){
-
-	}
-
+	@Override
 	public boolean replacementChance(){
-		if(stamina < 50){
-			return mental < 90;
+		if(this.getStamina() < 50){
+			return getMental() < 90;  // ou this.getMental() ??? 
 		}
 		return true;
 	}
 
-	public void updateMental(TeamStatistics ts){
+	@Override
+	public void updateMental(Team t){
 
 	}
+
+	@Override
+	public String toString(){
+		return "Central Forward: "+super.toString();
+	}
+
 }

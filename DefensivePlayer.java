@@ -1,28 +1,23 @@
 public abstract class DefensivePlayer extends Player{
-	// Player 
-	protected String name;
-	protected int number;
-	protected int age;
 	// Player technical caracteristics 
 	protected int pass;
-	protected int mental;
 
-	public DefensivePlayer(String name, int number, int age, int pass, int mental) {
-		this.name = name;
-		this.number = number;
-		this.age = age;
+	public DefensivePlayer(String name, int number, int age, int stamina, int mental, int pass) {
+		super(name, number, age, stamina, mental);
 		this.pass = pass;
-		this.mental = mental;
+	}
+	
+	@Override
+	public String toString(){
+		return super.toString()+"||Pass :"+pass;	
 	}
 
-	public String getName(){return name;}
-	public int getNumber(){return number;}
-	public int getAge(){return age;}
-	public int getPass(){return pass;}
-	public int getMental(){return mental;}
-
+	public int getPass(){
+		return pass;
+	}
+	
 	public abstract String getPos();
-	public abstract void play(Player p);
 	public abstract boolean replacementChance();
-	public abstract void updateMental(TeamStatistics ts);
+	public abstract void updateMental(Team t);
+	public abstract int sumAtributes();
 }
