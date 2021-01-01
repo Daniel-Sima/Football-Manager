@@ -1,23 +1,27 @@
 public class CentralMidfielder extends MidfieldPlayer{
 
-	public CentralMidfielder(String name, int number, int age, int stamina, int pass, int dribble, int mental) {
+	public CentralMidfielder(String name, int number, int age, int stamina, int mental, int pass, int dribble){
 		super(name,number,age,stamina,pass,dribble,mental);
 	}
+	
+	@Override
+	public String getPos(){ return "Central Midfielder";}
 
-	public String getPos(){return "Central Midfielder";}
-
-	public void play(Player p){
-
-	}
-
+	@Override
 	public boolean replacementChance(){
-		if(stamina < 50){
-			return mental < 90;
+		if(this.getStamina() < 50){
+			return this.getMental() < 90;
 		}
 		return true;
 	}
 
-	public void updateMental(TeamStatistics ts){
+	@Override
+	public void updateMental(Team t){
 
+	}
+	
+	@Override
+	public String toString(){
+		return "Central Midfielder: "+super.toString();
 	}
 }

@@ -1,25 +1,39 @@
 public class CentralDefender extends DefensivePlayer{
 	private int tackles;
-	private int stamina;
 
-	public CentralDefender(String name, int number, int age, int stamina, int tackles, int pass, int mental){
-		super(name,number,age,pass,mental);
+	public CentralDefender(String name, int number, int age, int stamina, int mental, int pass, int tackles){
+		super(name, number, age, stamina, mental, pass);
 		this.tackles = tackles;
-		this.stamina = stamina;
 	}
 
-	public void play(Player p){
-
-	}
-
+	@Override
 	public boolean replacementChance(){
-		if(stamina < 50){
-			return mental < 90;
+		if(this.getStamina() < 50){  // ~
+			return this.getMental() < 90;
 		}
 		return true;
 	}
 
-	public void updateMental(TeamStatistics ts){
+	@Override
+	public void updateMental(Team t){
 
 	}
+
+	public int getTackles(){
+		return tackles;
+	}
+	
+	@Override
+	public String getPos(){return "Central Defender";}
+	
+	@Override
+	public int sumAtributes(){
+		return this.getStamina() + this.getMental() + this.getPass() + this.getTackles();
+	}
+	
+	@Override
+	public String toString(){
+		return "Central Defender: "+super.toString()+"||Tackles :"+tackles;	
+	}
+	
 }
