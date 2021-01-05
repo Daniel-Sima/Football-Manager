@@ -1,4 +1,4 @@
-public class SideForward extends OffensivePlayer{
+public class SideForward extends OffensivePlayer {
 
 	public SideForward(String name, int number, int age, int stamina, int mental, int finish, int dribble) {
 		super(name, number, age, stamina, mental, finish, dribble);
@@ -13,11 +13,6 @@ public class SideForward extends OffensivePlayer{
 			return this.getMental() < 90;
 		}
 		return true;
-	}
-
-	@Override
-	public void updateMental(Team t){
-
 	}
 	
 	@Override

@@ -1,4 +1,4 @@
-public abstract class DefensivePlayer extends Player{
+public abstract class DefensivePlayer extends Player {
 	// Player technical caracteristics 
 	protected int pass;
 
@@ -18,6 +18,5 @@ public abstract class DefensivePlayer extends Player{
 	
 	public abstract String getPos();
 	public abstract boolean replacementChance();
-	public abstract void updateMental(Team t);
 	public abstract int sumAtributes();
 }

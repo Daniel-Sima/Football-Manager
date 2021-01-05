@@ -1,4 +1,4 @@
-public class SideMidfielder extends MidfieldPlayer{
+public class SideMidfielder extends MidfieldPlayer {
 
 	public SideMidfielder(String name, int number, int age, int stamina, int mental, int pass, int dribble){
 		super(name,number,age,stamina,pass,dribble,mental);
@@ -13,11 +13,6 @@ public class SideMidfielder extends MidfieldPlayer{
 			return this.getMental() < 90;
 		}
 		return true;
-	}
-
-	@Override
-	public void updateMental(Team t){
-
 	}
 	
 	@Override

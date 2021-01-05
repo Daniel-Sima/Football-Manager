@@ -1,4 +1,4 @@
-public class Goalkeeper extends DefensivePlayer{
+public class Goalkeeper extends DefensivePlayer {
 	private int reflexes;
 
 	public Goalkeeper(String name, int number, int age, int stamina, int reflexes, int pass, int mental){
@@ -17,11 +17,6 @@ public class Goalkeeper extends DefensivePlayer{
 			return getMental() < 90;
 		}
 		return true;
-	}
-
-	@Override
-	public void updateMental(Team t){
-
 	}
 	
 	@Override

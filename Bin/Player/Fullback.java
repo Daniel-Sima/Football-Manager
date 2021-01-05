@@ -1,4 +1,4 @@
-public class Fullback extends DefensivePlayer{
+public class Fullback extends DefensivePlayer {
 	private int tackles;
 
 	public Fullback(String name, int number, int age, int stamina, int mental, int pass, int tackles){
@@ -15,11 +15,6 @@ public class Fullback extends DefensivePlayer{
 			return this.getMental() < 90;
 		}
 		return true;
-	}
-
-	@Override	
-	public void updateMental(Team t){
-
 	}
 	
 	@Override

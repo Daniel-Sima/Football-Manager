@@ -1,4 +1,4 @@
-public class CentralMidfielder extends MidfieldPlayer{
+public class CentralMidfielder extends MidfieldPlayer {
 
 	public CentralMidfielder(String name, int number, int age, int stamina, int mental, int pass, int dribble){
 		super(name,number,age,stamina,pass,dribble,mental);
@@ -13,11 +13,6 @@ public class CentralMidfielder extends MidfieldPlayer{
 			return this.getMental() < 90;
 		}
 		return true;
-	}
-
-	@Override
-	public void updateMental(Team t){
-
 	}
 	
 	@Override

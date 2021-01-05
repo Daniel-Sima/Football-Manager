@@ -1,4 +1,4 @@
-public class CentralForward extends OffensivePlayer{
+public class CentralForward extends OffensivePlayer {
 
 	public CentralForward(String name, int number, int age, int stamina, int mental, int finish, int dribble){
 		super(name, number, age, stamina, mental, finish, dribble);;
@@ -13,11 +13,6 @@ public class CentralForward extends OffensivePlayer{
 			return getMental() < 90;  // ou this.getMental() ??? 
 		}
 		return true;
-	}
-
-	@Override
-	public void updateMental(Team t){
-
 	}
 
 	@Override

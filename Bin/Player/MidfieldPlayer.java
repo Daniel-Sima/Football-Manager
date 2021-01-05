@@ -1,4 +1,4 @@
-public abstract class MidfieldPlayer extends Player{
+public abstract class MidfieldPlayer extends Player {
 	// Player technical caracteristics 
 	protected int pass;
 	protected int dribble;
@@ -29,5 +29,4 @@ public abstract class MidfieldPlayer extends Player{
 	
 	public abstract String getPos();
 	public abstract boolean replacementChance();
-	public abstract void updateMental(Team t);
 }
