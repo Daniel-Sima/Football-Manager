@@ -5,6 +5,7 @@ public class Team{ //implements TeamLogo, TacticBoard{
 	protected ArrayList<Player> players = new ArrayList<Player>();
 	private static final int HOME_BONUS = 5; // bonus constant du match a domicil
 	private static int cpt = 0; //compteur d'index d'equipe pour gestion du schedule
+	private int index;
 
 	public Team(String name, ArrayList<Player> tabPlayer){
 		this.name = name;
