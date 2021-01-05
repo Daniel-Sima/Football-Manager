@@ -141,8 +141,10 @@ public class Simulation{
         try {
         	//on utilise un BufferedReader pour lire le scheduleFile ligne par ligne
             BufferedReader br = new BufferedReader(new FileReader(scheduleFile));
-          //on utilise un BufferedWriter pour ecrire le score ligne par ligne
-            BufferedWriter bw = new BufferedWriter(new FileWriter(scoreboardFile));
+            //on utilise un BufferedWriter pour ecrire le score ligne par ligne
+            File scoreboard = new File(scoreboardFile);
+            scoreboard.createNewFile();
+            BufferedWriter bw = new BufferedWriter(new FileWriter(scoreboard));
             
             String ligne = br.readLine();
             while(ligne != null){
@@ -194,8 +196,23 @@ public class Simulation{
 		return chaine;
     }
 	
+	public Team getTeamById(int id) {
+		for(int i=0;i<championship.size();i++) {
+			if(id == championship.get(i).getIndex())
+				return championship.get(i);
+		}
+		return null;
+	}
+	
     public String[][] setStringClassement(){
-    	return null;
+    	String [][] tab = new String[championship.size()][6];
+    	for(int i=0;i<championship.size(); i++) {
+    		tab[i][0] = getTeamById(tabClassement[i][0]).getTeamName();
+    		for(int j=1; j<6; j++) {
+    			tab[i][j] = String.valueOf(tabClassement[i][j]);
+    		}
+    	}
+    	return tab;
     }
 }
 	
