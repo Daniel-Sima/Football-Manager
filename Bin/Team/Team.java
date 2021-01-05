@@ -39,6 +39,7 @@ public class Team{ //implements TeamLogo, TacticBoard{
 		
 		
 	public String getTeamName(){ return name;}
+	public int getIndex(){return index;}
 
 	@Override
 	public String toString(){
