@@ -103,8 +103,12 @@ public class Simulation{
                 String [] tabI = ligne.split(" ");
                 int indexT1 = Integer.parseInt(tabI[0]);
                 int indexT2 = Integer.parseInt(tabI[1]);
-                Team t1 = championship.get(indexT1);
-                Team t2 = championship.get(indexT2);
+		for(int i=0;i<championship.size();i++){
+			if(championship.get(i).getIndex() == indexT1)
+				Team t1 = championship.get(i);
+			if(championship.get(i).getIndex() == indexT2)
+				Team t2 = championship.get(i);
+		}
 
                 Team winner = Team.match(t1,t2);
                 //on utilise l'égalité pour identifier le vainqueur
