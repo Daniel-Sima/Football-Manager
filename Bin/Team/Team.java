@@ -2,14 +2,11 @@ import java.util.ArrayList;
 
 public class Team{ //implements TeamLogo, TacticBoard{
 	private String name;
-	private ArrayList<Player> players = new ArrayList<Player>();
-	private final int HOME_BONUS = 5; // static final ??
-	private int index;
-	private static int cpt = 0;
+	protected ArrayList<Player> players = new ArrayList<Player>();
+	private static final int HOME_BONUS = 5; // bonus constant du match a domicil
 
 	public Team(String name, ArrayList<Player> tabPlayer){
 		this.name = name;
-		this.index = cpt++;
 		for(int i=0; i < 16; i++)    //16 Players in a team
 			players.add(tabPlayer.get(i));
 	}
@@ -22,7 +19,7 @@ public class Team{ //implements TeamLogo, TacticBoard{
 		return total;
 	}
 	
-	public Team match(Team t1, Team t2){  // retourne l'equipe gagnate
+	public static Team match(Team t1, Team t2){  // retourne l'equipe gagnate
 		int totalTeam1 = t1.sumAtributesTeam();
 		int totalTeam2 = t2.sumAtributesTeam();
 		
@@ -36,10 +33,7 @@ public class Team{ //implements TeamLogo, TacticBoard{
 		else return null;  // match nul
 	}
 		
-		
-		
 	public String getTeamName(){ return name;}
-	public int getIndex(){return index;}
 
 	@Override
 	public String toString(){
