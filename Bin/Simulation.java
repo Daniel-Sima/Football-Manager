@@ -3,15 +3,24 @@ import java.util.*;
 
 public class Simulation{
 	private String name;
-    public ArrayList<Team> championship = new ArrayList<Team>();
+    private ArrayList<Team> championship = new ArrayList<Team>();
+    private int [][] tabClassement;
 	private static int days = 0;
 	
 	public Simulation(String fileName, String name){
 		this.name = name;
 		championship = loadChampionship(fileName);
+		tabClassement = new int[championship.size()][6];
+		for(int i=0; i<championship.size(); i++) {
+			tabClassement[i][0] = championship.get(i).getIndex();
+			for(int j=1;j<6;j++) {
+				tabClassement[i][j] = 0;
+			}
+		}
 	}
 	
 	public String getChampionshipName(){ return name;}
+	public static int getDays() {return days;}
 	
 	public ArrayList<Team> loadChampionship(String teamsFile) {
 		ArrayList<Player> tabPlayer = new ArrayList<Player>();
@@ -78,44 +87,89 @@ public class Simulation{
         }
         return tabTeam;
     }	
-		
-	
+			
 	public void readChampionship(String scoreboardFile){   // afficher le championnat
-		Scanner s = null;
-		try{
-			s = new Scanner(new BufferedReader(new FileReader(scoreboardFile)));
-			while(s.hasNext()){
-				System.out.println(s.nextLine());
-			}
-		}catch(FileNotFoundException e){
-			System.out.println("File not found\n");
-		}finally{
-			if(s != null)
-				s.close();
-		}
+		try {
+            BufferedReader br = new BufferedReader(new FileReader(scoreboardFile));
+            String ligne = br.readLine();
+            while(ligne != null){
+            	//on recupere l'id des 2 equipes ainsi que l'id de l'equipe gagnante dans le ficher scoreboard
+            	String [] tabI = ligne.split(" ");
+                int indexT1 = Integer.parseInt(tabI[0]);
+                int indexT2 = Integer.parseInt(tabI[1]);
+                int winner = Integer.parseInt(tabI[2]);
+            	
+                //on parcourt le tabClassement pour identifier les 2 equipes et mettre a jour leurs points
+            	for(int i=0;i<championship.size();i++) {
+        			if(tabClassement[i][0] == indexT1) {
+        				tabClassement[i][1]++;
+        				if(winner == indexT1) {
+        					tabClassement[i][2]++;
+        					tabClassement[i][5] += 3;
+        				}
+        				else if(winner == -1) {
+        					tabClassement[i][3]++;
+        					tabClassement[i][5] += 1;
+        				}
+        				else tabClassement[i][4]++;
+        			} 
+        			if(tabClassement[i][0] == indexT2) {
+        				tabClassement[i][1]++;
+        				if(winner == indexT2) {
+        					tabClassement[i][2]++;
+        					tabClassement[i][5] += 3;
+        				}
+        				else if(winner == -1) {
+        					tabClassement[i][3]++;
+        					tabClassement[i][5] += 1;
+        				}
+        				else tabClassement[i][4]++;
+        			} 
+            	}
+            	
+            	ligne = br.readLine();
+            }
+            br.close();
+		}catch(FileNotFoundException e) {
+			System.out.println(e.getMessage());
+    	}catch(IOException e) {
+    		System.out.println(e.getMessage());
+    	}
     }
-    
-    public void updateChampionship(String scheduleFile) {
+   
+    public void updateChampionship(String scheduleFile, String scoreboardFile) {
         try {
+        	//on utilise un BufferedReader pour lire le scheduleFile ligne par ligne
             BufferedReader br = new BufferedReader(new FileReader(scheduleFile));
+          //on utilise un BufferedWriter pour ecrire le score ligne par ligne
+            BufferedWriter bw = new BufferedWriter(new FileWriter(scoreboardFile));
+            
             String ligne = br.readLine();
             while(ligne != null){
                 String [] tabI = ligne.split(" ");
                 int indexT1 = Integer.parseInt(tabI[0]);
                 int indexT2 = Integer.parseInt(tabI[1]);
-                Team t1 = championship.get(indexT1);
-                Team t2 = championship.get(indexT2);
-
+                Team t1 = null;
+                Team t2 = null;
+                for(int i=0;i<championship.size();i++) {
+                	if(championship.get(i).getIndex() == indexT1)
+                		t1 = championship.get(i);
+                	if(championship.get(i).getIndex() == indexT2)
+                		t2 = championship.get(i);
+                }
                 Team winner = Team.match(t1,t2);
-                //on utilise l'égalité pour identifier le vainqueur
+                //on utilise l'egalite pour identifier le vainqueur
                 if(winner != null){
                     updatePlayers(t1, (t1 == winner));
                     updatePlayers(t2, (t2 == winner));
+                    bw.write(t1.getIndex()+" "+t2.getIndex()+" "+winner.getIndex());
                 }
+                else bw.write(t1.getIndex()+" "+t2.getIndex()+" "+(-1));
                 ligne = br.readLine();
             }
-            days++; // on augmente le compteur de journées
+            days++; // on augmente le compteur de journees
             br.close();
+            bw.close();
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }catch(IOException e){
@@ -139,14 +193,10 @@ public class Simulation{
 		
 		return chaine;
     }
-    
-    public static void main(String[] args) {
-        Simulation test = new Simulation("Teams.txt", "Test");
-        System.out.println(test.championship.get(3).toString());
-        test.updateChampionship("schedule.txt");
-        System.out.println(test.championship.get(3).toString());
-    }
 	
+    public String[][] setStringClassement(){
+    	return null;
+    }
 }
 	
 	
