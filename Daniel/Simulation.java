@@ -248,28 +248,54 @@ public class Simulation{
     	return tab;
     }
     
-    /*
-    public String[][] setRealClassament(){
+   /* 
+    public int[][] setRealClassament(){
     	int[][] tab = tabClassement;
-    	int[][] tabRes;
-  		for(int i=0;i<championship.size();i++){
-  			
-  		}
+    	int[][] tabRes = new int[championship.size()][6];
+    	for(int i=0;i<championship.size();i++){
+    		tabRes[i] = getTabFirst(tab);
+    		tab
+    	}
+
   		return tabBis;
   	}
-  	*/
-  	public int[] getTabFirst(){
-  		int[][] tab = tabClassement;
+  	
+  	public int[] getTabFirst(int [][] tab){
+  		int[] tabRes = new int[6];
 			int tmpId = 0, tmpPts = tab[0][5];
 			for(int i = 0; i < championship.size(); i++){
 				if(tab[i][5] > tmpPts){
-					tmpPts = tab[i][5];
-					tmpId = i;
+					for(int j=0;j<6;j++){
+						tmpPts = tab[i][5];
+						tabRes[j] = tab[i][j];
+					}
 				}
 			}
-			return {tmpId,tmpPts};
+			for(int i = 0;i<championship.size();i++){
+				if(tab[i] = tabRes){
+					
+				}
+			}
+			return tabRes;
 		}
-  		  
+		
+		public void supprimerElement(int[] propo){ 
+		 	for( int i=0; i<tailleTableau; i++){
+				if(propo==tab[i]){     
+	 
+				for(int j=i+1; j<tailleTableau; j++)
+					{ 
+					tab[j-1]=tab[j];
+					//System.out.println(tab[j]);		
+					      }
+					tailleTableau=tailleTableau-1;	
+					for(int k=0; k<tailleTableau; k++)
+					{System.out.println(tab[k]);
+					}
+				}
+			}
+	  }
+  	*/	  
    public void writeFile(String file, String data) throws IOException{
 			BufferedWriter writer = null;
 			try{

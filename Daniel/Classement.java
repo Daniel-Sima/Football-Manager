@@ -27,7 +27,7 @@ public class Classement extends JFrame {
 		championnat.readChampionship("scoreboard.txt");
 		
 		
-		String [][] rec = championnat.setRealClassament();
+		String [][] rec = championnat.setStringClassement();
 		String [] header = {"Team","Played","Win","Draw","Loose","Points"};
 		JTable teamTable = new JTable(rec, header);
 		
