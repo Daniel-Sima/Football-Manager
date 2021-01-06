@@ -11,37 +11,20 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
 public class Classement extends JFrame {
-	/**
-	 *
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	public Classement() {
+
 		Simulation championnat = new Simulation("Teams.txt", "PremierLeague");
 
-		new WelcomePage();
-
-		JPanel panel = new JPanel();
-		panel.setBorder(BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder(),
-						"ODI Rankings", TitledBorder.CENTER, TitledBorder.TOP));
-
-		String [][] rec = championnat.setStringClassement();
-		String [] header = {"Team","Played","Win","Draw","Loose"};
-		JTable teamTable = new JTable(rec, header);
-
-		panel.add(new JScrollPane(teamTable));
-		add(panel, BorderLayout.CENTER);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Classement");
-		setSize(550,400);
-		setVisible(true);
+		Team[] TabTeams = new Team[2];
 
 		while(Simulation.getDays() < 5){
-			new TeamsWindow();
 			try {
 				setVisible(true);
 				TimeUnit.SECONDS.sleep(1);
-				championnat.updateChampionship("schedule.txt", "scoreboard.txt");
+				TabTeams = championnat.updateChampionship("schedule.txt", "scoreboard.txt");
 				championnat.readChampionship("scoreboard.txt");
 				dispose();
 			} catch (InterruptedException e) {
@@ -49,7 +32,14 @@ public class Classement extends JFrame {
 				e.printStackTrace();
 			}
 
+			// Team1, Team2
+			new TeamsWindow(TabTeams[0].getTeamName(), TabTeams[1].getTeamName());
+
 		}
+
+		new WelcomePage();
+
+		new TeamRankings(championnat);
 	}
 
 	public static void main(String [] args) {
