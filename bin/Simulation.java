@@ -111,30 +111,30 @@ public class Simulation{
             	
                 //on parcourt le tabClassement pour identifier les 2 equipes et mettre a jour leurs points
             	for(int i=0;i<championship.size();i++){
-        				if(tabClassement[i][0] == indexT1) {
-        					tabClassement[i][1]++;
-        					if(winner == indexT1){ // T1 win
-        						tabClassement[i][2]++;
-        						tabClassement[i][5] += 3;
-        					}
-        					else if(winner == -1) { // draw
-        						tabClassement[i][3]++;
-        						tabClassement[i][5] += 1;
-        					}
-        					else tabClassement[i][4]++;
-        				} 
-        				if(tabClassement[i][0] == indexT2) { 
-        					tabClassement[i][1]++;
-        					if(winner == indexT2){ // T2 win
-        						tabClassement[i][2]++;
-        						tabClassement[i][5] += 3;
-        					}
-        					else if(winner == -1) {
-        						tabClassement[i][3]++;
-        						tabClassement[i][5] += 1;
-        					}
-        					else tabClassement[i][4]++;
-        					} 
+					if(tabClassement[i][0] == indexT1) {
+						tabClassement[i][1]++;
+						if(winner == indexT1){ // T1 win
+							tabClassement[i][2]++;
+							tabClassement[i][5] += 3;
+						}
+						else if(winner == -1) { // draw
+							tabClassement[i][3]++;
+							tabClassement[i][5] += 1;
+						}
+						else tabClassement[i][4]++;
+					} 
+					if(tabClassement[i][0] == indexT2) { 
+						tabClassement[i][1]++;
+						if(winner == indexT2){ // T2 win
+							tabClassement[i][2]++;
+							tabClassement[i][5] += 3;
+						}
+						else if(winner == -1) {
+							tabClassement[i][3]++;
+							tabClassement[i][5] += 1;
+						}
+					else tabClassement[i][4]++;
+					} 
             	}
             	
             	ligne = br.readLine();
@@ -169,7 +169,7 @@ public class Simulation{
             bw = new BufferedWriter(new FileWriter(scoreboard));
             
             String ligne = br.readLine();
-            while(ligne != null){
+            while(ligne.length() != 0){
                 String [] tabI = ligne.split(" ");
                 int indexT1 = Integer.parseInt(tabI[0]);
                 int indexT2 = Integer.parseInt(tabI[1]);
