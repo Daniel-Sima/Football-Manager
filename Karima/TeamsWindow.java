@@ -41,7 +41,7 @@ public class TeamsWindow extends JFrame {
 
 		InfoTeams.setText(team1 +" vs " + team2 + "\nScore1 : Score2");
 
-		InfoTeams.setBounds(390, 576, 177, 65);
+		InfoTeams.setBounds(350, 576, 300, 70);
 		getContentPane().add(InfoTeams);
 
 
