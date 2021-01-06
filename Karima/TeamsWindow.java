@@ -40,7 +40,7 @@ public class TeamsWindow extends JFrame {
 		InfoTeams.setFont(new Font("Comic Sans MS", Font.PLAIN, 22));
 
 		InfoTeams.setText(team1 +" vs " + team2 + "\nScore1 : Score2");
-		
+
 		InfoTeams.setBounds(390, 576, 177, 65);
 		getContentPane().add(InfoTeams);
 
