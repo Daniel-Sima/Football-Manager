@@ -104,6 +104,8 @@ public class Simulation{
                 //System.out.println(indexT1);
                 int indexT2 = Integer.parseInt(tabI[1]);
                 int winner = Integer.parseInt(tabI[2]);
+                int score1 = Integer.parseInt(tabI[3]);
+                int score2 = Integer.parseInt(tabI[4]);
             	
                 //on parcourt le tabClassement pour identifier les 2 equipes et mettre a jour leurs points
             	for(int i=0;i<championship.size();i++){
