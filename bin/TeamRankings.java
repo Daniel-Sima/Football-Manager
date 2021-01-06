@@ -1,29 +1,20 @@
-import java.awt.BorderLayout;
-
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
-public class TeamRankings extends JFrame{
+public class TeamRankings extends JPanel{
   	/**
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	protected JPanel panel;
 
   public TeamRankings(Simulation championnat){
-    panel = new JPanel();
-		panel.setBorder(BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder(),
-		"ODI Rankings", TitledBorder.CENTER, TitledBorder.TOP));
+	setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(),
+			" ======== Barclay's Premier League Table ========= ", TitledBorder.CENTER, TitledBorder.TOP));
 
-		String [][] data = championnat.setStringClassement();
-		String [] header = {"Team","Played","Win","Draw","Loose"};
-		JTable teamTable = new JTable(data, header);
+	String [][] data = championnat.setStringClassement();
+	String [] header = {"Team","Played","Win","Draw","Loose","Points"};
+	JTable teamTable = new JTable(data, header);
 
-		panel.add(new JScrollPane(teamTable));
-		add(panel, BorderLayout.CENTER);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Classement");
-		setSize(550,400);
-		setVisible(true);
+	add(new JScrollPane(teamTable));
   }
 }

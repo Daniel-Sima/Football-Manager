@@ -1,4 +1,4 @@
-import java.awt.BorderLayout;
+import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.*;
@@ -8,40 +8,43 @@ public class Classement extends JFrame {
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
+	private Dimension currentScreenSize;
 
 	public Classement() {
 		Simulation championnat = new Simulation("database/Teams.txt", "PremierLeague");
+		championnat.setDays("database/schedule.txt");
+		currentScreenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-		Team[] TabTeams = new Team[2];
-		String[][] rec;
-		String[] header = { "Team", "Played", "Win", "Draw", "Loose", "Points" };
-		;
-
-		JPanel panel = new JPanel();
-		add(panel, BorderLayout.CENTER);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Classement");
-		setSize(550, 400);
-		setVisible(true);
+		setLocation((int)currentScreenSize.getWidth()/2, (int)currentScreenSize.getWidth()/21);
+		setSize(680, 750);
 
-		for (int i = 0; i < 2; i++) {
+		JPanel startPanel = new JPanel();
+		startPanel.add(new WelcomePage());
+
+		add(startPanel);
+		setVisible(true);
+		try {
+			TimeUnit.SECONDS.sleep(3);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
+		championnat.readChampionship("database/scoreboard.txt");
+		add(new TeamRankings(championnat));
+		revalidate();
+		for (int i = 0; i < championnat.getDays(); i++) {
 			try {
-				TabTeams = championnat.updateChampionship("database/schedule.txt", "database/scoreboard.txt");
+				championnat.updateChampionship("database/schedule.txt", "database/scoreboard.txt");
 				championnat.readChampionship("database/scoreboard.txt");
-				rec = championnat.setStringClassement();
-				JTable teamTable = new JTable(rec, header);
-				panel.add(new JScrollPane(teamTable));
-				
-				new TeamRankings(championnat);
+				add(new TeamRankings(championnat));
+				revalidate();
 				TimeUnit.SECONDS.sleep(1);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 		}
-		
-		
 	}
 
 	public static void main(String [] args) {

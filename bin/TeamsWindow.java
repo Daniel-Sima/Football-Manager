@@ -1,27 +1,22 @@
-import java.awt.Image;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
-import javax.swing.JFrame;
-
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
-import javax.swing.JTextArea;
-import java.awt.Font;
-import java.awt.Color;
+import java.awt.*;
+import javax.swing.*;
 
 public class TeamsWindow extends JFrame {
 	/**
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
+	private Dimension currentScreenSize;
+
 
 	public TeamsWindow(String team1, String team2){
+		currentScreenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
 		new JFrame();
-		setBounds(100, 100, 1000, 750);
+		setSize(1000, 750);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
+		setLocation(0, (int)currentScreenSize.getHeight()/12);
 
 		JLabel twoTeams = new JLabel("twoTeams");
 		twoTeams.setHorizontalAlignment(SwingConstants.CENTER);
