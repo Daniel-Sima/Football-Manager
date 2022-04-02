@@ -1,4 +1,4 @@
-## Simulation de championnat de la première ligue anglaise en Java
+# Simulation de championnat de la première ligue anglaise en Java
 ====================================================================
 ## Exécution du programme:
 Dans le répertoire courant:  
